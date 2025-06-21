@@ -1,53 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Research Summary</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ConMamba</title>
 
-  <!-- Bootstrap CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-  <style>
-    body {
-      padding-top: 50px;
-      background-color: #f8f9fa;
-    }
-    .container {
-      max-width: 900px;
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
 
-  <div class="container">
-    <h1 class="mb-4 text-center">Research Summary</h1>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.7;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+      /* Hero */
+      .hero {
+        background: url("hero-image.jpg") center/cover no-repeat;
+        color: black;
+        padding: 6rem 1rem;
+      }
+      .hero h1 {
+        font-family: "Lora", serif;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .hero .meta {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+      /* Section titles */
+      .section-title {
+        font-family: "Lora", serif;
+        font-size: 2rem;
+        border-left: 4px solid #0d6efd;
+        padding-left: 0.75rem;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+      }
+      .subsection-title {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #0d6efd;
+        font-weight: 500;
+        border-left: 3px solid #0d6efd;
+        padding-left: 0.5rem;
+      }
+      /* Figures */
+      figure img {
+        width: 100%;
+        height: auto;
+        border-radius: 0.4rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      figure figcaption {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #555;
+        margin-top: 0.4rem;
+      }
+      /* Blockquote */
+      blockquote {
+        border-left: 4px solid #0d6efd;
+        padding-left: 1rem;
+        margin: 2rem 0;
+        font-style: italic;
+        background: #eef5ff;
+        border-radius: 0.25rem;
+      }
+      /* Footer / References */
+      footer {
+        background: #fff;
+        padding: 2rem 1rem;
+        margin-top: 4rem;
+        border-top: 1px solid #ddd;
+      }
+      footer h2 {
+        font-family: "Lora", serif;
+        font-size: 1.75rem;
+        color: #0d6efd;
+        margin-bottom: 1rem;
+      }
+      footer ol {
+        padding-left: 1.5rem;
+      }
+      footer ol li {
+        margin-bottom: 0.75rem;
+        text-align: justify;
+      }
+      @media (max-width: 576px) {
+        .hero h1 {
+          font-size: 2.25rem;
+        }
+        .section-title {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
 
-    <p>
-      This is a brief summary of my research work. The research focuses on semantic segmentation
-      of satellite imagery using advanced deep learning techniques including Transformers and Kolmogorov-Arnold Networks.
-      The model improves accuracy and domain adaptation across rural and urban regions.
-    </p>
+  <body>
+    <!-- HERO SECTION:   
+       - To change the background, replace 'hero-image.jpg'
+    -->
+    <header class="hero text-center">
+      <div class="container">
+        <h1>ConMamba: Contrastive Vision Mamba for Plant Disease Detection</h1>
+      </div>
+      <div class="text-center mb-4">
+        <!-- AUTHOR LIST: copy this block to add/remove authors -->
+        <p class="h5 mb-1">
+          Abdullah Al Mamun<sup>a,b,c</sup>, Miaohua Zhang<sup>b</sup>, David
+          Ahmedt-Aristizabal<sup>b</sup>, Zeeshan Hayder<sup>b</sup>, Mohammad
+          Awrangjeb<sup>a</sup>
+        </p>
+        <p class="fst-italic text-muted small">
+          <sup>a</sup>School of Information and Communication Technology,
+          Griffith University, Nathan, 4111, Queensland, Australia<br />
+          <sup>b</sup>Imaging and Computer Vision Group, Data61, CSIRO, Black
+          Mountain, 2601, Canberra, Australia<br />
+          <sup>c</sup>Department of Electrical and Electronic Engineering, Feni
+          University, Feni, 3900, Bangladesh
+        </p>
+      </div>
+    </header>
 
-    <h3 class="mt-5">Research Figure</h3>
-    <img src="figure1.png" alt="Research Figure" />
+    <!-- MAIN CONTENT -->
+    <main class="container my-5">
+      <!-- ABSTRACT SECTION:
+         - Add additional paragraphs by duplicating the <p> below -->
+      <section id="abstract">
+        <h2 class="section-title">Abstract</h2>
+        <p>
+          Plant Disease Detection (PDD) is a key aspect of precision
+          agriculture. However, existing deep learning methods often rely on
+          extensively annotated datasets, which are time-consuming and costly to
+          generate. Self-supervised Learning (SSL) offers a promising
+          alternative by exploiting the abundance of unlabeled data. However,
+          most existing SSL approaches suffer from high computational costs due
+          to convolutional neural networks or transformer-based architectures.
+          Additionally, they struggle to capture long-range depen dencies in
+          visual representation and rely on static loss functions that fail to
+          align local and global features effectively. To address these
+          challenges, we propose ConMamba, a novel SSL framework specially
+          designed for PDD. ConMamba integrates the Vision Mamba Encoder (VME),
+          which employs a bidirectional State Space Model (SSM) to capture
+          long-range dependencies efficiently. Furthermore, we introduce a
+          dual-level contrastive loss with dynamic weight adjustment to optimize
+          local-global feature alignment. Exper imental results on three
+          benchmark datasets demonstrate that ConMamba significantly outperforms
+          state-of-the-art methods across multiple evaluation metrics. This
+          provides an efficient and robust solution for PDD.
+        </p>
+      </section>
 
-    <footer class="mt-5 text-center text-muted">
-      © 2025 Your Name
+      <!-- MODEL SECTION:
+         - To add more figures duplicate the <figure> block and update src & caption -->
+      <section id="model-figure">
+        <h2 class="section-title">Model</h2>
+        <figure class="text-center">
+          <img
+            src="images/model.png"
+            alt="Architecture overview"
+            style="width: 60%; height: auto"
+          />
+          <figcaption class="mt-2">
+            Figure 1: Schematic representation of the ConMamba framework.
+          </figcaption>
+        </figure>
+        <p>
+          The framework begins with Stage 1 (Contrastive data augmentation):
+          Data augmentation is applied to input images to generate two distinct
+          augmented views for each input image. Stage 2 (Feature representation
+          with Vision Mamba): Each augmented view undergoes patch embedding
+          followed by the Vision Mamba Encoder (VME) to obtain meaningful
+          bidirectional feature representations. Stage 3 (Loss calculation): A
+          dual-level Contrastive loss with dynamic weight adjustment is employed
+          to maximize local pairwise similarity (intra-class contrast) and
+          global alignment (inter-class contrast). Finally, Stage 4 (Plant
+          disease classification): The plant disease classification task adapts
+          the learned representations for plant disease classification,
+          utilizing the embedding vectors to produce class predictions.
+        </p>
+      </section>
+
+      <!-- RESULTS & ANALYSIS SECTION:
+         - Wrap subsections in a <div class="ms-4"> to indent under this heading -->
+      <section id="results-analysis">
+        <h2 class="section-title">Results &amp; Analysis</h2>
+        <div class="ms-4">
+          <!-- QUALITATIVE ANALYSIS:
+             - Add more figures or descriptions by duplicating <figure> or <p> -->
+          <h3 class="subsection-title">Qualitative Analysis</h3>
+          <p>
+            To qualitatively assess the discriminative capacity of ConMamba, we
+            generate Class Activation Maps (CAMs) [52] based on the model’s
+            predictions during the testing stage. These visualizations highlight
+            the regions most influential in the model’s decision-making, and
+            show how well it localizes disease symptoms. Figure 7 presents a
+            side-by-side comparison between ConMamba and the second-best
+            performing methods across three datasets. For each dataset, two
+            representative images are randomly selected. As shown in the figure,
+            ConMamba consistently attends to the most relevant symptomatic
+            regions, while baseline models often exhibit over-extended attention
+            regions or focus on irrelevant areas, leading to misinterpretation
+            and reduced localization precision.
+          </p>
+          <figure class="text-center">
+            <!--  adjust width if needed -->
+            <img
+              src="images/qualitative_analysis.png"
+              alt="Qualitative results of ConMamba"
+              class="img-fluid mx-auto d-block"
+              style="width: 60%"
+            />
+            <figcaption>
+              Figure 8: t-SNE visualization of feature representations learned
+              by ConMamba on corn plant images from the PlantVillage dataset.
+            </figcaption>
+          </figure>
+
+          <!-- QUANTITATIVE ANALYSIS:
+             - Update the table rows to match your metrics. Duplicate <tr> for more entries -->
+          <h3 class="subsection-title">Quantitative Analysis</h3>
+          <p>
+            The overall performance of the proposed ConMamba framework across
+            the three datasets is summarized in Table 1. ConMamba achieves its
+            highest performance on the PlantVillage dataset, followed by
+            PlantDoc and Citrus.
+          </p>
+          <!--  adjust width if needed -->
+          <table
+            class="table table-striped table-bordered table-hover mt-3"
+            style="width: 60%; margin: 0 auto"
+          >
+            <caption class="caption-top text-center mb-2">
+              Table 1: Performance of ConMamba on the three datasets.
+            </caption>
+            <thead class="table-light">
+              <tr>
+                <th>Dataset</th>
+                <th>Accuracy</th>
+                <th>Recall</th>
+                <th>Precision</th>
+                <th>F1-Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>PlantVillage</td>
+                <td>98.62</td>
+                <td>97.59</td>
+                <td>96.74</td>
+                <td>97.38</td>
+              </tr>
+              <tr>
+                <td>PlantDoc</td>
+                <td>92.15</td>
+                <td>91.80</td>
+                <td>91.25</td>
+                <td>92.00</td>
+              </tr>
+              <tr>
+                <td>Citrus</td>
+                <td>90.45</td>
+                <td>89.50</td>
+                <td>89.00</td>
+                <td>89.25</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- CONCLUSION SECTION:
+         - Add or remove <p> paragraphs as needed -->
+      <section id="conclusion">
+        <h2 class="section-title">Conclusion</h2>
+        <p>
+          In this paper, we propose ConMamba, a novel self-supervised learning
+          framework designed for plant disease detection (PDD), aiming to reduce
+          dependence on large annotated datasets. By leveraging unlabeled data,
+          ConMamba learns rich and discriminative feature representations that
+          improve classification performance across diverse and challenging
+          scenarios. Our dual-level contrastive learning strategy with dynamic
+          uncertainty-based loss weighting aligns local and global features,
+          while the Vision Mamba Encoder efficiently captures long-range
+          dependencies. Extensive experiments and ablation studies validate its
+          effectiveness and robustness.
+        </p>
+      </section>
+    </main>
+
+    <!-- REFERENCES / BIBLIOGRAPHY:
+       - To add more citations duplicate a <li> and use IEEE style -->
+    <footer class="container">
+      <h2>References</h2>
+      <ol>
+        <li>
+          [1] R. N. Jogekar, N. Tiwari, “A review of deep learning techniques
+          for identification and diagnosis of plant leaf disease,”
+          <em>Smart Trends in Computing and Communications</em>, SmartCom 2020,
+          pp. 435–441, 2021.
+        </li>
+        <li>
+          [2] S. Gupta, S. Verma, R. Thakur, “Phytosanitary requirement for
+          import of horticulture crops,”
+          <em>Int. J. Curr. Microbiol. App. Sci.</em>, vol. 8, no. 2, pp.
+          2871–2886, 2019.
+        </li>
+        <li>
+          [3] R. Dwivedi, S. Dey, C. Chakraborty, S. Tiwari, “Grape disease
+          detection network based on multi-task learning and attention
+          features,” <em>IEEE Sensors Journal</em>, vol. 21, no. 16, pp.
+          17573–17580, 2021.
+        </li>
+        <li>
+          [4] L. C. Ngugi, M. Abelwahab, M. Abo-Zahhad, “Recent advances in
+          image processing techniques for automated leaf pest and disease
+          recognition–a review,” <em>Information Processing in Agriculture</em>,
+          vol. 8, no. 1, pp. 27–51, 2021.
+        </li>
+      </ol>
+      <p class="text-center text-muted mt-4">
+        © All rights reserved by Mazbah 2025
+      </p>
     </footer>
-  </div>
 
-  <!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
